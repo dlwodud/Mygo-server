@@ -7,10 +7,13 @@
 	$userID= $_POST["userID"];
 	$courseTitle = $_POST["courseTitle"];
 	$courseStroy = $_POST["courseStroy"];
-    $courseWorry = $_POST["courseWorry"];
+    $courseWorry =  $_POST["courseWorry"];
+    $targetGender = $_POST["targetGender"];
+    $targetAge = $_POST["targetAge"];
+    $timeToDelete = $_POST["timeToDelete"];
 
-	$statement = mysqli_prepare($con, "INSERT INTO COURSE VALUES ('', ?, ?, ?, ?, now())");
-	mysqli_stmt_bind_param($statement, "ssss",  $userID, $courseTitle, $courseStroy, $courseWorry);
+	$statement = mysqli_prepare($con, "INSERT INTO COURSE VALUES ('', ?, ?, ?, ?, now(), ?, ? ,?)");
+	mysqli_stmt_bind_param($statement, "sssssss",  $userID, $courseTitle, $courseStroy, $courseWorry, $targetGender, $targetAge, $timeToDelete);
 
 	$response = array();
 	$response["success"] =  mysqli_stmt_execute($statement);
